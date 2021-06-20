@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Виселица!</title>
+</head>
+
+<body>
+    <h1>Виселица!</h1>
+
+<script>
+    
+    // Создаём массив со словами
+    var words = ["программа", "макака", "прекрасный", "оладушек", "собака", "ноутбук", "клавиатура"];
+    
+    // Выбираем случайное слово
+    var word = words [Math.floor(Math.random() * words.length)];
+    
+    // Создаём итоговый массив
+    var answerArray = [];
+    for (i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+    }
+
+    var remainingLetters = word.length;
+    var remainingTimes = word.length * 2;
+
+    // Игровой цикл
+    while (remainingLetters > 0 && remainingTimes > 0) {
+    // Показываем состояине игры
+    alert (answerArray.join(" ") + " Осталось количество попыток " + remainingTimes + ". Осталось количество букв " + remainingLetters);
+    // Запрашиваем вариант ответа
+    var guess = prompt("Угадайте букву или нажмите Отмена для выхода из игры.");
+    remainingTimes--;
+    if (guess === null) {
+        // Выходим из игрового цикла
+        break;
+    } else if (guess.length !== 1) {
+        alert("Пожалуйста, введите только одну букву.");
+    } else {
+        for (var j = 0; j < word.length; j++) {
+            if (word[j] === guess.toLowerCase() && answerArray[j] === "_") {
+                answerArray[j] = guess.toLowerCase();
+                remainingLetters--;
+            }
+        }
+    }
+// Конец игрового цикла
+}
+alert(answerArray.join(" "));
+
+if (remainingTimes === 0) {
+    alert("У вас кончились попытки");
+} else {
+    alert("Отлично! Было загадано слово " + word);
+}
+
+</script>
+</body>
+</html>
