@@ -11,12 +11,9 @@
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
     <script>
-        var friends = ["Павел", "Владимир", "Роман"];
-        for (var i = 0; i < friends.length; i++) {
-            $("body").append("<p>" + friends[i] + "</p>");
+        for (i = 0; i < 5; i++) {
+            $("h1").fadeOut(500).fadeIn(500);
         }
-        $("h1").text("Мои друзья");
-        $("p").hide(2000).fadeIn(2000).append(" лучший");
     </script>
 
 </body>
