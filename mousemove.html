@@ -11,12 +11,61 @@
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
     <script>
-        $("html").click(function (event) {
+        var leftOffset = 0;
+        var downOffset = 0;
+
+        var moveHeading = function () {
+            if (leftOffset < 200 && downOffset === 0) {
             $("#heading").offset({
-                left: event.pageX,
-                top: event.pageY
+                left: leftOffset
             });
-        });
+
+            leftOffset++;
+        }
+
+            if (leftOffset === 200 && downOffset < 200) {
+                $("#heading").offset({
+                top: downOffset
+            });
+
+            downOffset++;
+            }
+
+            if (downOffset === 200 && leftOffset === 200) {
+                $("#heading").offset({
+                left: leftOffset
+            });
+
+            leftOffset--;
+            }
+
+            if (downOffset === 200 && leftOffset < 200) {
+                $("#heading").offset({
+                left: leftOffset
+            });
+
+            leftOffset--;
+            }
+
+            if (leftOffset === 0 && downOffset === 200) {
+                $("#heading").offset({
+                top: downOffset
+            });
+
+            downOffset--;
+            }
+
+            if (leftOffset === 0 && downOffset < 200) {
+                $("#heading").offset({
+                top: downOffset
+            });
+
+            downOffset--;
+            }
+
+        };
+
+        setInterval(moveHeading, 15);
     </script>
 
 </body>
