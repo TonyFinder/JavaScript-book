@@ -11,8 +11,10 @@
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
 
     <script>
+        var n = 500;
         for (i = 0; i < 5; i++) {
-            $("h1").fadeOut(500).fadeIn(500);
+            $("h1").fadeOut(n).fadeIn(n);
+            n = n + 500;
         }
     </script>
 
