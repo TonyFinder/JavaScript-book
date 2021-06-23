@@ -48,6 +48,8 @@
         var width = 800;
         var height = 800;
         var clicks = 0;
+        var n = 10;
+        var c = n;
 
         var target = {
             x: getRandomNumber(width),
@@ -56,6 +58,7 @@
         
         $("#map").click(function(event){
             clicks++;
+            n--;
 
             var distance = getDistance(event, target);
             var distanceHint = getDistanceHint(distance);
@@ -65,9 +68,11 @@
                 alert("Клад найден! Сделано кликов: " + clicks);
             }
 
-            if (clicks > 5) {
+            if (clicks === c) {
                 alert("Количество кликов исчерпано! Вы проиграли!");
             }
+
+            alert("Осталось " + n + " кликов до конца игры!");
 
         });
 
