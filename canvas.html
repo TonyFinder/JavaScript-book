@@ -12,30 +12,19 @@
         var ctx = canvas.getContext ("2d");
         ctx.lineWidth = 4;
 
-        var circle = function (x, y, radius) {
+        var points = [[50, 50], [50, 100], [100, 100], [100, 50], [50, 50]];
+        var mysteryPoints = [[50, 50], [50, 100], [25, 120], [100, 50], [70, 90], [100, 90], [70, 120]];
+
+        var drawPoints = function (z) {
             ctx.beginPath();
-            ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-            if (radius < 8) {
-                ctx.fill();
-            } else {
-                ctx.stroke();
+            ctx.moveTo(z[0][0], z[0][1]);
+            for (var i = 1; i < z.length; i++) {
+                ctx.lineTo(z[i][0], z[i][1]);
             }
+            ctx.stroke();
         };
 
-        var drawSnowman = function (x, y) {
-            circle(x + 100, y + 100, 50);
-            circle(x + 100, y + 210, 60);
-            circle(x + 85, y + 90, 7);
-            circle(x + 115, y + 90, 7);
-            circle(x + 100, y + 180, 7);
-            circle(x + 100, y + 210, 7);
-            circle(x + 100, y + 240, 7);
-
-            ctx.fillStyle = "Orange";
-            circle(x + 100, y + 110, 7);
-    };
-
-    drawSnowman(100, 100);
+        drawPoints(mysteryPoints);
 
     </script>
 </body>
