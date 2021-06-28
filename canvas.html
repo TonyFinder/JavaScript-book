@@ -1,31 +1,67 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Canvas</title>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
 </head>
-
 <body>
-    <canvas id="canvas" width="200" height="200"></canvas>
-
     <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
-
+    <canvas id="canvas" width="400" height="400"></canvas>
+    
     <script>
-    var canvas = document.getElementById("canvas");
-    var ctx = canvas.getContext("2d");
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext ("2d");
+        
+        var visel = function () {
+            if (mistakes === 1) {
+                ctx.stroke(50, 50, 20, 20);
+            }
+        };
 
-    var circle = function (x, y, radius, fillCircle) {
-      ctx.beginPath();
-      ctx.arc(x, y, radius, 0, Math.PI * 2, false);
-      if (fillCircle) {
-        ctx.fill();
-      } else {
-        ctx.stroke();
-      }
-    };
-
-    $('canvas').mousemove(function (event) {
-      circle(event.offsetX, event.offsetY, 3, true);
-    });
+        var mistakes = 0;
+        // Создаем массив со словами
+        var words = [
+            "программа",
+            "макака",
+            "прекрасный",
+            "оладушек"
+        ];
+        // Выбираем случайное слово
+        var word = words[Math.floor(Math.random() * words.length)];
+        // Создаем итоговый массив
+        var answerArray = [];
+        for (var i = 0; i < word.length; i++) {
+            answerArray[i] = "_";
+            }
+        var remainingLetters = word.length;
+        // Игровой цикл
+        while (remainingLetters > 0) {
+        // Показываем состояние игры
+        alert(answerArray.join(" "));
+        // Запрашиваем вариант ответа
+        var guess = prompt("Угадайте букву, или нажмите Отмена для выхода из игры.");
+        if (guess === null) {
+        // Выходим из игрового цикла
+        break;
+        } else if (guess.length !== 1) {
+        alert("Пожалуйста, введите одиночную букву.");
+        } else {
+        // Обновляем состояние игры
+        for (var j = 0; j < word.length; j++) {
+        if (word[j] === guess) {
+            answerArray[j] = guess;
+            remainingLetters--;
+        } else {
+            mistakes++;
+            visel();
+        }
+        }
+        }
+        // Конец игрового цикла
+        }
+        // Отображаем ответ и поздравляем игрока
+        alert(answerArray.join(" "));
+        alert("Отлично! Было загадано слово " + word);
     </script>
 </body>
 </html>
