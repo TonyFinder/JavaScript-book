@@ -17,8 +17,8 @@
     var Ball = function () {
         this.x = 100;
         this.y = 100;
-        this.xSpeed = Math.floor(Math.random() * 10) - 5;
-        this.ySpeed = Math.floor(Math.random() * 10) - 5;
+        this.xSpeed = (Math.random() * 10) - 5;
+        this.ySpeed = (Math.random() * 10) - 5;
     };
 
     var circle = function (x, y, radius, fillCircle) {
@@ -54,12 +54,18 @@
     setInterval(function () {
         ctx.clearRect(0, 0, width, height);
 
-        ball.draw();
-        ball.move();
-        ball.checkCollision();
-
+        for (j = 0; j < 10; j++) {
+        balls[j].draw();
+        balls[j].move();
+        balls[j].checkCollision();
+    };
         ctx.strokeRect(0, 0, width, height);
     }, 30);
+
+    var balls = [];
+    for (i = 0; i < 10; i++) {
+        balls[i] = new Ball();
+    }
 
 </script>
 </body>
